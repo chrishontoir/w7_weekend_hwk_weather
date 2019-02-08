@@ -9,7 +9,7 @@ const CityWeatherView = function(container) {
 CityWeatherView.prototype.bindEvents = function() {
   PubSub.subscribe('Weather:city-found', (event) => {
     const cityData = event.detail;
-
+    this.render(cityData);
     // this.data = new Object();
     // this.data.name = cityData.city.name;
     // this.data.country = cityData.city.country;
@@ -58,12 +58,26 @@ CityWeatherView.prototype.render = function(cityData) {
   this.container.appendChild(cityContainer);
 
   const cityName = document.createElement('h1');
-  cityName.textContent = cityData.city.name;
+  cityName.textContent = cityData.name;
   cityContainer.appendChild(cityName);
 
   const cityCountry = document.createElement('h2');
-  cityCountry.textContent = cityData.city.country;
+  cityCountry.textContent = cityData.country;
   cityContainer.appendChild(cityCountry);
+
+  this.element = document.createElement('ul');
+  cityContainer.appendChild(this.element);
+
+  cityData.uniqueDates.forEach((date) => {
+    const cityDates = document.createElement('li');
+    cityDates.textContent = date.date;
+    this.element.appendChild(cityDates);
+  });
+
+  this.element.addEventListener('click', (event) => {
+    const selectedDate = event.target.textContent;
+    console.log(selectedDate);
+  })
 
   // const dateArray = [];
   // const dateTimeArray = [];
