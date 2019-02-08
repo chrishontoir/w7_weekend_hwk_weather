@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
+const CityDayView = require('./city_day_view.js');
 
 const CityWeatherView = function(container) {
   this.container = container;
@@ -9,6 +10,7 @@ const CityWeatherView = function(container) {
 CityWeatherView.prototype.bindEvents = function() {
   PubSub.subscribe('Weather:city-found', (event) => {
     const cityData = event.detail;
+    this.data = cityData;
     this.render(cityData);
     // this.data = new Object();
     // this.data.name = cityData.city.name;
@@ -77,6 +79,9 @@ CityWeatherView.prototype.render = function(cityData) {
   this.element.addEventListener('click', (event) => {
     const selectedDate = event.target.textContent;
     console.log(selectedDate);
+    const cityDayView = new CityDayView(this.container, this.data, selectedDate);
+    cityDayView.getData();
+    console.log(cityDayView);
   })
 
   // const dateArray = [];
