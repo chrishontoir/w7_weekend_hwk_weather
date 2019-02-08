@@ -18,6 +18,9 @@ CityDayView.prototype.render = function(array) {
   console.log(array[0].times[0]);
 
   array[0].times[0].forEach((time) => {
+
+    const justTime = time.dt_txt.split(" ");
+    const actualJustTime = justTime[1];
     console.log(time.dt_txt);
     console.log(time.weather[0].main);
 
@@ -25,7 +28,7 @@ CityDayView.prototype.render = function(array) {
     this.element.appendChild(timeContainer);
 
     const weatherTime = document.createElement('h4');
-    weatherTime.textContent = time.dt_txt;
+    weatherTime.textContent = actualJustTime;
     timeContainer.appendChild(weatherTime);
 
     const main = document.createElement('p');
@@ -39,5 +42,7 @@ CityDayView.prototype.render = function(array) {
 
   })
 }
+
+
 
 module.exports = CityDayView;
