@@ -13,8 +13,27 @@ Weather.prototype.bindEvents = function() {
     const cityName = event.detail;
     console.log(cityName);
     const cityCode = cityCodes.filter((city) => city.name === cityName);
-    console.log(cityCode[0].id);
-    const actualCityCode = cityCode[0].id;
+    console.log(cityCode);
+
+    const uniqueCountries = [];
+    const uniqueCityCountries = [];
+    cityCode.forEach((city) => {
+      if (uniqueCountries.includes(city.country)) {
+        return;
+      }
+      else {
+        uniqueCountries.push(city.country);
+        uniqueCityCountries.push(city);
+      };
+    });
+    console.log(uniqueCityCountries);
+    PubSub.publish('Weather:unique-city-array', uniqueCityCountries);
+    // const actualCityCode = cityCode[0].id;
+    // this.getData(actualCityCode);
+  });
+
+  PubSub.subscribe('SelectCountryView:country-selected', (event) => {
+    const actualCityCode = event.detail;
     this.getData(actualCityCode);
   });
 };
