@@ -28,6 +28,8 @@ Weather.prototype.bindEvents = function() {
     });
     console.log(uniqueCityCountries);
     PubSub.publish('Weather:unique-city-array', uniqueCityCountries);
+    const tempCityCode = uniqueCityCountries[0].id
+    this.getData(tempCityCode);
     // const actualCityCode = cityCode[0].id;
     // this.getData(actualCityCode);
   });
