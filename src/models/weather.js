@@ -12,7 +12,7 @@ Weather.prototype.bindEvents = function() {
   PubSub.subscribe('SelectCityView:city-input', (event) => {
     const cityName = event.detail;
     console.log(cityName);
-    const cityCode = cityCodes.filter((city) => city.name === cityName);
+    const cityCode = cityCodes.filter((city) => city.name.toLowerCase() === cityName.toLowerCase());
     console.log(cityCode);
 
     const uniqueCountries = [];

@@ -128,6 +128,8 @@ header div select {
   margin: 0;
   margin-bottom: 4px;
   margin-left: 15px;
+  max-width: 500px;
+  overflow: hidden;
 }
 
 #weather-container div div img {
@@ -276,7 +278,19 @@ header div select {
     margin: 20px;
   }
 
+  #weather-container div {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 
+}
+
+@media (max-width: 1120px) {
+  #weather-container div ul {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 @media (max-width: 860px) {
