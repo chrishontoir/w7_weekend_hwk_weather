@@ -130,6 +130,14 @@ header div select {
   margin-left: 15px;
 }
 
+#weather-container div div img {
+  width: 30px;
+  margin-bottom: 8px;
+  margin-left: 4px;
+  border: 1px solid black;
+
+}
+
 
 #weather-container div ul {
   width: 40%;
@@ -207,6 +215,7 @@ header div select {
 #weather-times div:hover {
   margin: 0 20px;
   height: 320px;
+  cursor: pointer;
 }
 
 #weather-times div i:first-child {

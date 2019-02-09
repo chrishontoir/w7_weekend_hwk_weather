@@ -81,6 +81,10 @@ CityWeatherView.prototype.render = function(cityData) {
   cityCountry.textContent = this.name.name;
   cityCountryContainer.appendChild(cityCountry);
 
+  const cityFlag = document.createElement('img');
+  cityFlag.src = this.name.flag;
+  cityCountryContainer.appendChild(cityFlag);
+
   this.element = document.createElement('ul');
   cityContainer.appendChild(this.element);
 
