@@ -70,20 +70,23 @@ CityWeatherView.prototype.render = function(cityData) {
   const cityContainer = document.createElement('div');
   this.container.appendChild(cityContainer);
 
+  const cityCountryContainer = document.createElement('div');
+  cityContainer.appendChild(cityCountryContainer);
+
   const cityName = document.createElement('h1');
   cityName.textContent = cityData.name;
-  cityContainer.appendChild(cityName);
+  cityCountryContainer.appendChild(cityName);
 
   const cityCountry = document.createElement('h2');
   cityCountry.textContent = this.name.name;
-  cityContainer.appendChild(cityCountry);
+  cityCountryContainer.appendChild(cityCountry);
 
   this.element = document.createElement('ul');
   cityContainer.appendChild(this.element);
 
   cityData.uniqueDates.forEach((date) => {
     const cityDates = document.createElement('button');
-    cityDates.textContent = `${date.day[0]} ${date.day[2]} ${date.day[1]}`;
+    cityDates.innerHTML = `${date.day[0]}<br><span>${date.day[2]}</span><br>${date.day[1]}`;
     cityDates.value = date.date
     this.element.appendChild(cityDates);
   });

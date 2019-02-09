@@ -5,6 +5,10 @@ body {
 
 }
 
+button:focus {
+    outline:none !important;
+}
+
 .all-content {
   position: absolute;
   top: 0;
@@ -40,6 +44,10 @@ header h1 {
   font-weight: 700;
 }
 
+header h1 span {
+  color: red;
+}
+
 header div {
   background-color: none;
   margin-right: 30px;
@@ -54,25 +62,32 @@ header div {
   background-color: none;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   max-width: 1200px;
   margin: 30px auto;
   padding: 0;
 }
 
-#weather-container div h1 {
+#weather-container div div {
+  background-color: none;
+  display: flex;
+  align-items:flex-end;
+  margin: 0;
+}
+
+#weather-container div div h1 {
   background-color: none;
   padding: 0;
   margin: 0;
-  margin-bottom: 25px;
 }
 
-#weather-container div h2 {
+#weather-container div div h2 {
   font-size: 20px;
   background-color: none;
   padding: 0;
   margin: 0;
-  margin-bottom: 25px;
+  margin-bottom: 4px;
+  margin-left: 15px;
 }
 
 
@@ -91,8 +106,14 @@ header div {
   font-family: 'Aleo', serif;
   background-color: rgba(255,255,255,0);
   border: none;
-  padding: 40px 20px;
+  padding: 30px 30px;
   height: 100%;
+}
+
+#weather-container div ul button span {
+  font-size: 30px;
+  font-weight: 700;
+  pointer-events:none;
 }
 
 #weather-container div ul li {
@@ -145,6 +166,7 @@ header div {
 
 #weather-times div:hover {
   margin: 0 20px;
+  height: 320px;
 }
 
 #weather-times div i:first-child {
@@ -160,6 +182,7 @@ header div {
 #weather-times div h4 {
   background-color: none;
   margin: 20px 0;
+  margin-bottom: 0;
   font-size: 30px;
 }
 
@@ -183,6 +206,7 @@ header div {
 
 #weather-container div ul button.selected {
   background-color: rgba(255,255,255,0.2);
+  color: maroon;
 }
 
 .red {
