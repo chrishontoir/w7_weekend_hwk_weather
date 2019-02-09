@@ -5,6 +5,7 @@ const cityCodes = require('../data/city.list.json')
 const Weather = function() {
   this.data = null;
   this.actualData = null;
+  this.country = null;
 };
 
 Weather.prototype.bindEvents = function() {
@@ -26,6 +27,7 @@ Weather.prototype.getData = function(cityId) {
     .then((activity) => {
       this.data = activity;
       this.generateNewObject(this.data);
+      console.log(this.actualData);
       PubSub.publish('Weather:city-found', this.actualData);
     });
     // .catch((err) => {
@@ -36,7 +38,13 @@ Weather.prototype.getData = function(cityId) {
 Weather.prototype.generateNewObject = function(cityData) {
   this.actualData = new Object();
   this.actualData.name = cityData.city.name;
-  this.actualData.country = cityData.city.country;
+  this.getCountryName(cityData.city.country);
+  // PubSub.subscribe('Weather:country-found', (event) => {
+  //   this.actualData.country = event.detail;
+  // });
+  // this.actualData.country = this.country;
+  // console.log(countryName);
+  // this.actualData.country = cityData.city.country;
   this.actualData.id = cityData.city.id;
   this.actualData.dates = [];
 
@@ -72,6 +80,21 @@ Weather.prototype.generateNewObject = function(cityData) {
   // uniqueArray = Array.from(uniqueDates);
   // console.log(uniqueArray);
 };
+
+Weather.prototype.getCountryName = function(countryCode) {
+  const url = `https://restcountries.eu/rest/v2/alpha/${countryCode}`;
+  const request = new RequestHelper(url);
+  request.get()
+  .then((activity) => {
+    this.country = activity;
+    PubSub.publish('Weather:city-name', activity);
+  });
+}
+
+Weather.prototype.outputCountry = function(country){
+  console.log(country.name);
+  this.actualData.country = country.name;
+}
 
 Weather.prototype.generateUniqueDates = function(dateArray) {
   const uniqueDates = new Set (dateArray);

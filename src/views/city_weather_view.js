@@ -5,13 +5,14 @@ const CityWeatherView = function(container) {
   this.container = container;
   this.element = null;
   this.data = null;
+  this.name = null;
 };
 
 CityWeatherView.prototype.bindEvents = function() {
   PubSub.subscribe('Weather:city-found', (event) => {
     const cityData = event.detail;
     this.data = cityData;
-    this.render(cityData);
+
     // this.data = new Object();
     // this.data.name = cityData.city.name;
     // this.data.country = cityData.city.country;
@@ -24,6 +25,12 @@ CityWeatherView.prototype.bindEvents = function() {
     // this.generateData(cityData);
     // this.render(cityData);
   });
+  PubSub.subscribe('Weather:city-name', (event2) => {
+    const cityName = event2.detail;
+    this.name = cityName;
+    this.render(this.data);
+  });
+
 };
 
 CityWeatherView.prototype.generateData = function(cityData) {
@@ -55,7 +62,11 @@ CityWeatherView.prototype.generateData = function(cityData) {
 };
 
 CityWeatherView.prototype.render = function(cityData) {
+  console.log(cityData.name);
+  console.log(this.name.name);
   this.container.innerHTML = "";
+  const weatherContainer = document.querySelector('#weather-times');
+  weatherContainer.innerHTML = "";
   const cityContainer = document.createElement('div');
   this.container.appendChild(cityContainer);
 
@@ -64,7 +75,7 @@ CityWeatherView.prototype.render = function(cityData) {
   cityContainer.appendChild(cityName);
 
   const cityCountry = document.createElement('h2');
-  cityCountry.textContent = cityData.country;
+  cityCountry.textContent = this.name.name;
   cityContainer.appendChild(cityCountry);
 
   this.element = document.createElement('ul');
@@ -78,12 +89,17 @@ CityWeatherView.prototype.render = function(cityData) {
   });
 
   this.element.addEventListener('click', (event) => {
+    console.log(this.element.childNodes[0]);
+    this.element.childNodes.forEach((node) => {
+      node.classList.remove('selected');
+    });
     const selectedDate = event.target.value;
+    event.target.classList.add('selected');
     console.log(selectedDate);
     const cityDayView = new CityDayView(this.container, this.data, selectedDate);
     cityDayView.getData();
     console.log(cityDayView);
-  })
+  });
 
   // const dateArray = [];
   // const dateTimeArray = [];
