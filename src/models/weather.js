@@ -43,6 +43,8 @@ Weather.prototype.generateNewObject = function(cityData) {
   const dateArray = [];
   const dateTimeArray = [];
   cityData.list.forEach((date) => {
+    const dayofDate = new Date(date.dt_txt).toDateString();
+    const dayofDateSplit = dayofDate.split(" ");
     const splitData = date.dt_txt.split(" ");
     dateArray.push(splitData[0]);
     dateTimeArray.push(splitData);
@@ -50,6 +52,7 @@ Weather.prototype.generateNewObject = function(cityData) {
     dateInfo.datetime = date.dt_txt;
     dateInfo.date = splitData[0];
     dateInfo.time = splitData[1];
+    dateInfo.day = dayofDateSplit[0];
     dateInfo.weather = [];
 
     weatherInfo = new Object();
@@ -76,8 +79,11 @@ Weather.prototype.generateUniqueDates = function(dateArray) {
   this.actualData.uniqueDates = []
 
   uniqueDateArray.forEach((date) => {
+
     const uniqueDate = new Object();
     uniqueDate.date = date;
+    const uniqueDay = this.generateDayOfWeek(date);
+    uniqueDate.day = uniqueDay;
     uniqueDate.times = [];
     this.actualData.uniqueDates.push(uniqueDate);
     const array = this.generateTimesofUniqueDates(date);
@@ -86,9 +92,17 @@ Weather.prototype.generateUniqueDates = function(dateArray) {
 
 
 
+
+
    // = uniqueDateArray;
 
 }
+
+Weather.prototype.generateDayOfWeek = function(date) {
+  const dateObject = new Date(date);
+  const dateString = dateObject.toDateString().split(" ");
+  return dateString;
+};
 
 Weather.prototype.generateTimesofUniqueDates = function(date) {
   const array = []

@@ -1,0 +1,61 @@
+body {
+  background-color: yellow;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: red;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+header h1 {
+  margin: 0;
+  background-color: blue;
+  margin-left: 30px;
+}
+
+header div {
+  background-color: green;
+  margin-right: 30px;
+}
+
+#weather-container div ul {
+  width: 80%;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+#weather-container div ul li {
+  background-color: pink;
+  padding: 20px;
+  margin: 0 5px;
+}
+
+#weather-container div ul li:hover {
+  cursor: pointer;
+}
+
+#weather-times {
+  width: 80%;
+  margin: 0 auto;
+  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+#weather-times div {
+  background-color: blue;
+  height: 300px;
+  width: calc(90% / 8);
+
+}

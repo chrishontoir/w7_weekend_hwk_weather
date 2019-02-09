@@ -71,13 +71,14 @@ CityWeatherView.prototype.render = function(cityData) {
   cityContainer.appendChild(this.element);
 
   cityData.uniqueDates.forEach((date) => {
-    const cityDates = document.createElement('li');
-    cityDates.textContent = date.date;
+    const cityDates = document.createElement('button');
+    cityDates.textContent = `${date.day[0]} ${date.day[2]} ${date.day[1]}`;
+    cityDates.value = date.date
     this.element.appendChild(cityDates);
   });
 
   this.element.addEventListener('click', (event) => {
-    const selectedDate = event.target.textContent;
+    const selectedDate = event.target.value;
     console.log(selectedDate);
     const cityDayView = new CityDayView(this.container, this.data, selectedDate);
     cityDayView.getData();
