@@ -21,7 +21,7 @@ Weather.prototype.bindEvents = function() {
 
 
 Weather.prototype.getData = function(cityId) {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&appid=b0d3643e15362e208da4ec5867b98afa`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&units=metric&appid=b0d3643e15362e208da4ec5867b98afa`;
   const request = new RequestHelper(url);
   request.get()
     .then((activity) => {
@@ -66,7 +66,9 @@ Weather.prototype.generateNewObject = function(cityData) {
     weatherInfo = new Object();
     weatherInfo.main = date.weather[0].main;
     weatherInfo.description = date.weather[0].description;
+    weatherInfo.icon = `wi-owm-${date.weather[0].id}`;
     dateInfo.weather.push(weatherInfo);
+
 
     this.actualData.dates.push(dateInfo);
 

@@ -29,12 +29,19 @@ CityDayView.prototype.render = function(array) {
     const timeContainer = document.createElement('div');
     this.element.appendChild(timeContainer);
 
-    const icon = document.createElement('img');
-    icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
+    // const icon = document.createElement('img');
+    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
+    // timeContainer.appendChild(icon);
+
+    const icon = document.createElement('i');
+    icon.classList.add(`wi`);
+    icon.classList.add(`red`);
+    icon.classList.add(`wi-owm-${time.weather[0].id}`);
+    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
     timeContainer.appendChild(icon);
 
     const weatherTime = document.createElement('h4');
-    weatherTime.textContent = adjustedTime;
+    weatherTime.innerHTML = `${adjustedTime[0]}<span>${adjustedTime[1]}</span>`;
     timeContainer.appendChild(weatherTime);
 
     const main = document.createElement('p');
@@ -45,6 +52,19 @@ CityDayView.prototype.render = function(array) {
     description.textContent = time.weather[0].description;
     timeContainer.appendChild(description);
 
+    const temp = document.createElement('p');
+    const rounded = Math.round(time.main.temp);
+    temp.innerHTML = `${rounded}&deg`;
+    timeContainer.appendChild(temp);
+
+    const windDir = document.createElement('i');
+    windDir.classList.add(`wi`);
+    windDir.classList.add(`wi-wind`);
+    const roundDeg = Math.round(time.wind.deg);
+    windDir.classList.add(`from-${roundDeg}-deg`);
+    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
+    timeContainer.appendChild(windDir);
+
 
 
 
@@ -54,28 +74,28 @@ CityDayView.prototype.render = function(array) {
 CityDayView.prototype.adjustTime = function(actualJustTime) {
   const time = actualJustTime.getHours();
   if (time === 0) {
-    return "12am";
+    return ["12","am"];
   }
   else if (time === 3) {
-    return "3am";
+    return ["3","am"];
   }
   else if (time === 6) {
-    return "6am";
+    return ["6","am"];
   }
   else if (time === 9) {
-    return "9am";
+    return ["9","am"];
   }
   else if (time === 12) {
-    return "12pm";
+    return ["12","pm"];
   }
   else if (time === 15) {
-    return "3pm";
+    return ["3","pm"];
   }
   else if (time === 18) {
-    return "6pm";
+    return ["6","pm"];
   }
   else if (time === 21) {
-    return "9pm";
+    return ["9","pm"];
   }
 }
 
