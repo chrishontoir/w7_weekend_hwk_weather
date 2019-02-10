@@ -1,6 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js');
 const RequestHelper = require('../helpers/request_helper.js');
 const cityCodes = require('../data/city.list.json');
+const API_KEY = require('../helpers/api_key.js');
 
 const Weather = function() {
   this.data = null;
@@ -40,7 +41,7 @@ Weather.prototype.bindEvents = function() {
 };
 
 Weather.prototype.getData = function(cityId) {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&units=metric&appid=b0d3643e15362e208da4ec5867b98afa`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&units=metric&appid=${API_KEY}`;
   const request = new RequestHelper(url);
   request.get()
     .then((activity) => {
