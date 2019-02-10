@@ -24,12 +24,6 @@ input:focus {
 }
 
 header {
-  /* background-color: white;
-  margin: 30px 30px;
-  padding: 0;
-
-  height: 60px;
-  border-radius: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -85,16 +79,8 @@ header div select {
   margin-left: 10px;
 }
 
-/* input#select-city {
-  border: none;
-  border-bottom: 1px solid lightgrey;
-  text-align:center;
-  box-shadow: 0 1px 0 lightgrey;
-} */
-
 #weather-container {
   background-color: rgba(255,255,255,.2);
-  /* padding: 10px 0; */
 }
 
 #weather-container div {
@@ -137,9 +123,7 @@ header div select {
   margin-bottom: 8px;
   margin-left: 4px;
   border: 1px solid black;
-
 }
-
 
 #weather-container div ul {
   width: 40%;
@@ -180,24 +164,12 @@ header div select {
 #weather-times {
   max-width: 1200px;
   margin: 0 auto;
-
   display: flex;
   justify-content: center;
   overflow-x:scroll;
 }
 
 #weather-times div {
-  /* background-color: white;
-  height: 300px;
-  width: calc(90% / 8);
-  border: 1px solid lightgrey;
-  box-shadow: 0 0 2px lightgrey;
-  margin: 20px 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center; */
-
   min-width: 100px;
   height: 300px;
   background: #fff;
@@ -211,7 +183,6 @@ header div select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 0 5px; */
 }
 
 #weather-times div:hover {
@@ -282,7 +253,6 @@ header div select {
     margin-left: 20px;
     margin-right: 20px;
   }
-
 }
 
 @media (max-width: 1120px) {

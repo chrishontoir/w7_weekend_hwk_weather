@@ -14,11 +14,9 @@ CityDayView.prototype.getData = function(){
 
 CityDayView.prototype.render = function(array) {
   this.element.innerHTML = "";
-
   console.log(array[0].times[0]);
 
   array[0].times[0].forEach((time) => {
-
     const justTime = time.dt_txt.split(" ");
     const actualJustTime = new Date(time.dt_txt);
     const adjustedTime = this.adjustTime(actualJustTime);
@@ -29,15 +27,10 @@ CityDayView.prototype.render = function(array) {
     const timeContainer = document.createElement('div');
     this.element.appendChild(timeContainer);
 
-    // const icon = document.createElement('img');
-    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
-    // timeContainer.appendChild(icon);
-
     const icon = document.createElement('i');
     icon.classList.add(`wi`);
     icon.classList.add(`red`);
     icon.classList.add(`wi-owm-${time.weather[0].id}`);
-    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
     timeContainer.appendChild(icon);
 
     const weatherTime = document.createElement('h4');
@@ -62,14 +55,9 @@ CityDayView.prototype.render = function(array) {
     windDir.classList.add(`wi-wind`);
     const roundDeg = Math.round(time.wind.deg);
     windDir.classList.add(`from-${roundDeg}-deg`);
-    // icon.src=`http://openweathermap.org/img/w/${time.weather[0].icon}.png`;
     timeContainer.appendChild(windDir);
-
-
-
-
-  })
-}
+  });
+};
 
 CityDayView.prototype.adjustTime = function(actualJustTime) {
   const time = actualJustTime.getHours();
@@ -96,9 +84,7 @@ CityDayView.prototype.adjustTime = function(actualJustTime) {
   }
   else if (time === 21) {
     return ["9","pm"];
-  }
-}
-
-
+  };
+};
 
 module.exports = CityDayView;

@@ -1,7 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const SelectCountryView = function(form) {
-  this.element = form;
+const SelectCountryView = function(element) {
+  this.element = element;
 };
 
 SelectCountryView.prototype.bindEvents = function() {
@@ -14,9 +14,6 @@ SelectCountryView.prototype.bindEvents = function() {
       this.element.appendChild(option);
     });
   });
-
-
-
 
   this.element.addEventListener('change', (event) => {
     event.preventDefault();
